@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fig's Journal | Ninth Room</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body class="journal-page">
+
+    <!-- NAVIGATION -->
+
+    <nav class="journal-nav">
+        <a href="index.html">← Back to the Ninth Room</a>
+        <span>Fig's Journal</span>
+    </nav>
+
+
+    <!-- JOURNAL ROOM -->
+
+    <main class="journal-room">
+
+
+        <!-- FIG -->
+
+        <section class="journal-fig">
+
+            <img
+                src="cat-images/cat-neutral.png"
+                alt="Fig the Problem Child"
+                id="journal-cat"
+            >
+
+            <div class="journal-cat-message">
+                <p id="journal-cat-text">
+                    Seriously? I JUST said that was private.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- OPEN JOURNAL -->
+
+        <section class="open-journal">
+
+            <img
+                src="images/pages.png"
+                alt="An open journal"
+                class="journal-pages"
+            >
+
+
+            <!-- ENTRY TEXT -->
+
+            <div class="journal-left-page">
+
+                <p class="journal-entry-number">
+                    ENTRY 01
+                </p>
+
+                <h1>
+                    What is the Ninth Room?
+                </h1>
+
+                <div id="entry-text">
+
+                    <p>
+                        Fine. You opened it.
+                    </p>
+
+                    <p>
+                        The Ninth Room is my room. That's a website,
+                        but it's boring, so I won't call it that.
+                        Everything has a place even if it might not
+                        seem like it. Click on things, move them around,
+                        and see what you can do.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREVIOUS / NEXT -->
+
+            <div class="journal-controls">
+
+                <button
+                    type="button"
+                    id="previous-entry"
+                >
+                    ← PREVIOUS
+                </button>
+
+                <button
+                    type="button"
+                    id="next-entry"
+                >
+                    NEXT →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FIG'S STUFF -->
+
+        <img
+            src="images/pen.png"
+            alt="Fig's fountain pen"
+            class="journal-object journal-pen"
+            id="journal-pen"
+        >
+
+        <img
+            src="images/crosswords.png"
+            alt="Fig's crossword puzzle"
+            class="journal-object journal-crosswords"
+            id="journal-crosswords"
+        >
+
+        <img
+            src="images/coffee.png"
+            alt="Fig's coffee"
+            class="journal-object journal-coffee"
+            id="journal-coffee"
+        >
+
+    </main>
+
+
+
+    <script>
+
+        /* ================================= */
+        /* JOURNAL ENTRIES                   */
+        /* ================================= */
+
+        const entries = [
+
+            {
+                number: "ENTRY 01",
+
+                title: "What is the Ninth Room?",
+
+                text: `
+                    <p>Fine. You opened it.</p>
+
+                    <p>
+                        The Ninth Room is my room. That's a website,
+                        but it's boring, so I won't call it that.
+                        Everything has a place even if it might not
+                        seem like it. Click on things, move them around,
+                        and see what you can do.
+                    </p>
+                `,
+
+                cat: "cat-images/cat-neutral.png",
+
+                message:
+                    "Seriously? I JUST said that was private."
+            },
+
+
+            {
+                number: "ENTRY 02",
+
+                title: "Who am I?",
+
+                text: `
+                    <p>I'm Fig, the Problem Child.</p>
+
+                    <p>
+                        I'm your persistent little feline. And your
+                        tour guide. I'll be showing you around the site
+                        from my point of view and if I sound like a jerk,
+                        or weird, or not-so-sensical… pretty sure that's me.
+                    </p>
+                `,
+
+                cat: "cat-images/cat-shy.png",
+
+                message:
+                    "Yes. An entire entry about me. Obviously."
+            },
+
+
+            {
+                number: "ENTRY 03",
+
+                title: "How this place works",
+
+                text: `
+                    <p>
+                        This isn't one of those websites where you just
+                        sit back and look at all the pretty pictures.
+                    </p>
+
+                    <p>
+                        Objects can be clicked on, dragged around and
+                        hovered over. Some will provide you with information.
+                        Some will direct you to a different location.
+                        If it looks like it should be clicked on,
+                        then it probably is.
+                    </p>
+                `,
+
+                cat: "cat-images/cat-neutral.png",
+
+                message:
+                    "Basically: touch things. You'll figure it out."
+            },
+
+
+            {
+                number: "ENTRY 04",
+
+                title: "All my things are out of place",
+
+                text: `
+                    <p>
+                        Because it's MY room.
+                    </p>
+
+                    <p>
+                        The things in the Ninth Room do more than fill
+                        empty space. They also guide you in navigating
+                        the web site and finding other pages. My notebook
+                        is connected to this space and some objects might
+                        lead you somewhere far away.
+                    </p>
+                `,
+
+                cat: "cat-images/cat-neutral.png",
+
+                message:
+                    "They're exactly where I wanted them."
+            }
+
+        ];
+
+
+
+        /* ================================= */
+        /* GET PAGE ELEMENTS                 */
+        /* ================================= */
+
+        let currentEntry = 0;
+
+
+        const entryNumber =
+            document.querySelector(".journal-entry-number");
+
+        const entryTitle =
+            document.querySelector(".journal-left-page h1");
+
+        const entryText =
+            document.querySelector("#entry-text");
+
+
+        const journalCat =
+            document.querySelector("#journal-cat");
+
+        const journalCatText =
+            document.querySelector("#journal-cat-text");
+
+
+        const previousButton =
+            document.querySelector("#previous-entry");
+
+        const nextButton =
+            document.querySelector("#next-entry");
+
+
+
+        /* ================================= */
+        /* SHOW ENTRY                        */
+        /* ================================= */
+
+        function showEntry() {
+
+            const entry = entries[currentEntry];
+
+
+            entryNumber.textContent =
+                entry.number;
+
+            entryTitle.textContent =
+                entry.title;
+
+            entryText.innerHTML =
+                entry.text;
+
+
+            journalCat.src =
+                entry.cat;
+
+            journalCatText.textContent =
+                entry.message;
+
+
+
+            /* hide previous on first entry */
+
+            if (currentEntry === 0) {
+
+                previousButton.style.visibility =
+                    "hidden";
+
+            } else {
+
+                previousButton.style.visibility =
+                    "visible";
+
+            }
+
+
+
+            /* hide next on last entry */
+
+            if (currentEntry === entries.length - 1) {
+
+                nextButton.style.visibility =
+                    "hidden";
+
+            } else {
+
+                nextButton.style.visibility =
+                    "visible";
+
+            }
+
+        }
+
+
+
+        /* ================================= */
+        /* ENTRY BUTTONS                     */
+        /* ================================= */
+
+        nextButton.addEventListener(
+            "click",
+            function () {
+
+                if (currentEntry < entries.length - 1) {
+
+                    currentEntry++;
+
+                    showEntry();
+
+                }
+
+            }
+        );
+
+
+        previousButton.addEventListener(
+            "click",
+            function () {
+
+                if (currentEntry > 0) {
+
+                    currentEntry--;
+
+                    showEntry();
+
+                }
+
+            }
+        );
+
+
+
+        /* ================================= */
+        /* FIG REACTS TO OBJECTS             */
+        /* ================================= */
+
+        const pen =
+            document.querySelector("#journal-pen");
+
+        const crosswords =
+            document.querySelector("#journal-crosswords");
+
+        const coffee =
+            document.querySelector("#journal-coffee");
+
+
+
+        /* PEN */
+
+        pen.addEventListener(
+            "click",
+            function () {
+
+                journalCat.src =
+                    "cat-images/cat-neutral.png";
+
+                journalCatText.textContent =
+                    "Hey. I use that to write.";
+
+            }
+        );
+
+
+
+        /* CROSSWORDS */
+
+        crosswords.addEventListener(
+            "click",
+            function () {
+
+                journalCat.src =
+                    "cat-images/cat-shy.png";
+
+                journalCatText.textContent =
+                    "Don't look at my answers.";
+
+            }
+        );
+
+
+
+        /* COFFEE */
+
+        coffee.addEventListener(
+            "click",
+            function () {
+
+                journalCat.src =
+                    "cat-images/cat-neutral.png";
+
+                journalCatText.textContent =
+                    "Careful. That's MY coffee.";
+
+            }
+        );
+
+
+
+        /* FIRST ENTRY */
+
+        showEntry();
+
+    </script>
+
+
+</body>
+
+</html>

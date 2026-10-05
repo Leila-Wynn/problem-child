@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Ninth Room</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- ===================================== -->
+    <!-- FIRST SCREEN: THE NINTH ROOM          -->
+    <!-- ===================================== -->
+
+    <header>
+        <h1>Welcome to the Ninth Room</h1>
+        <p>Come in. Or don't. Problem Child doesn't care.</p>
+    </header>
+
+
+    <main>
+
+        <section class="room">
+
+
+            <!-- CLOCK -->
+
+            <div class="object-wrapper clock">
+
+                <img
+                    src="images/Clock.png"
+                    class="room-object"
+                    alt="Yellow vintage clock"
+                    draggable="false">
+
+                <div class="object-info">
+                    A yellow vintage clock.<br>
+                    It still works. Probably.
+                </div>
+
+            </div>
+
+
+
+            <!-- TELEPHONE -->
+
+            <div class="object-wrapper phone">
+
+                <img
+                    src="images/Telephone.png"
+                    class="room-object"
+                    alt="Green rotary telephone"
+                    draggable="false">
+
+                <div class="object-info">
+                    An old rotary telephone.<br>
+                    Nobody has called.
+                </div>
+
+            </div>
+
+
+
+            <!-- BOOKS -->
+
+            <div class="object-wrapper books" id="books-link">
+
+    <img
+        src="images/Books.png"
+        class="room-object"
+        alt="Stack of old books"
+        draggable="false">
+
+    <div class="object-info">
+        Fig's Journal<br>
+        Click to snoop.
+    </div>
+
+</div>
+
+
+
+            <!-- DRIED FLOWER -->
+
+            <div class="object-wrapper flower">
+
+                <img
+                    src="images/Dried-flower.png"
+                    class="room-object"
+                    alt="Dried flower"
+                    draggable="false">
+
+                <div class="object-info">
+                    A dried flower.<br>
+                    It used to be prettier.
+                </div>
+
+            </div>
+
+
+
+            <!-- ROTTEN LUCK -->
+
+            <div class="object-wrapper apple">
+
+                <img
+                    src="images/Rotten-Luck.png"
+                    class="room-object"
+                    alt="Apple with Rotten Luck written inside"
+                    draggable="false">
+
+                <div class="object-info">
+                    Rotten Luck.<br>
+                    Don't eat it.
+                </div>
+
+            </div>
+
+
+
+            <!-- SARDINES -->
+
+            <div class="object-wrapper fish">
+
+                <img
+                    src="images/Sardines.png"
+                    class="room-object"
+                    alt="Tin of sardines"
+                    draggable="false">
+
+                <div class="object-info">
+                    A tin of sardines.<br>
+                    Fig claims these.
+                </div>
+
+            </div>
+
+
+
+            <!-- HAT -->
+
+            <div class="object-wrapper hat">
+
+                <img
+                    src="images/Hat.png"
+                    class="room-object"
+                    alt="Brown vintage hat"
+                    draggable="false">
+
+                <div class="object-info">
+                    An old brown hat.<br>
+                    Surprisingly dramatic.
+                </div>
+
+            </div>
+
+
+
+            <!-- FIG -->
+
+            <div class="problem-child">
+
+                <img
+                    src="cat-images/cat-neutral.png"
+                    id="problem-child"
+                    alt="Fig the Problem Child"
+                    draggable="false">
+
+                <div class="cat-message">
+
+                    <p id="cat-text">
+                        What are you looking at?
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ===================================== -->
+        <!-- SECOND SCREEN: FIG'S RULES            -->
+        <!-- YOU REACH THIS BY SCROLLING DOWN      -->
+        <!-- ===================================== -->
+
+        <section class="fig-rules">
+
+
+            <!-- FIG -->
+
+            <div class="rules-intro">
+
+                <div class="rules-fig">
+
+                    <img
+                        src="cat-images/cat-smug-3.png"
+                        id="rules-cat"
+                        alt="Fig the Problem Child">
+
+                </div>
+
+
+                <div class="rules-speech">
+
+                    <p>
+                        Look. I'm Fig, the Problem Child, and you're in MY world,
+                        so you're gonna follow my rules... or the website creator's
+                        rules. Whatever. Here's the rules:
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TYPEWRITER -->
+
+            <div class="typewriter-area">
+
+                <img
+                    src="images/Typewriter.png"
+                    class="typewriter"
+                    alt="Vintage burgundy typewriter">
+
+
+                <!-- TEXT ON THE PAPER -->
+
+                <div class="typewriter-paper">
+
+                    <p
+                        class="rule-number"
+                        id="rule-number">
+                        RULE 01
+                    </p>
+
+
+                    <h2 id="rule-title">
+                        Touch my stuff if you want.
+                    </h2>
+
+
+                    <p id="rule-description">
+                        Click things. Drag things. Hover over things.
+                        That's why they're there.
+                    </p>
+
+
+                    <button id="next-rule">
+                        NEXT →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <script>
+
+        /* ================================= */
+        /* FIG IN THE FIRST ROOM             */
+        /* ================================= */
+
+
+        const cat =
+            document.getElementById("problem-child");
+
+        const catText =
+            document.getElementById("cat-text");
+
+
+        const expressions = [
+
+            "cat-images/cat-neutral.png",
+
+            "cat-images/cat-smug-3.png",
+
+            "cat-images/cat-surprised.png",
+
+            "cat-images/cat-shy.png",
+
+            "cat-images/cat-annoyed.png"
+
+        ];
+
+
+        const messages = [
+
+            "What are you looking at?",
+
+            "Obviously I run this place.",
+
+            "Excuse me?!",
+
+            "Stop staring at me.",
+
+            "You're getting on my nerves."
+
+        ];
+
+
+        let expression = 0;
+
+
+        cat.addEventListener(
+            "click",
+
+            function () {
+
+                expression++;
+
+
+                if (expression >= expressions.length) {
+
+                    expression = 0;
+
+                }
+
+
+                cat.src =
+                    expressions[expression];
+
+
+                catText.textContent =
+                    messages[expression];
+
+            }
+        );
+
+
+
+        /* ================================= */
+        /* FIG REACTS TO OBJECTS             */
+        /* ================================= */
+
+
+        const reactions = {
+
+
+            clock: {
+
+                face:
+                    "cat-images/cat-annoyed.png",
+
+                message:
+                    "Yes. Time is passing. Thank you for noticing."
+
+            },
+
+
+            phone: {
+
+                face:
+                    "cat-images/cat-surprised.png",
+
+                message:
+                    "Don't answer that."
+
+            },
+
+
+            books: {
+
+                face:
+                    "cat-images/cat-smug-3.png",
+
+                message:
+                    "I have read all of those. Obviously."
+
+            },
+
+
+            flower: {
+
+                face:
+                    "cat-images/cat-shy.png",
+
+                message:
+                    "...I was keeping that."
+
+            },
+
+
+            apple: {
+
+                face:
+                    "cat-images/cat-annoyed.png",
+
+                message:
+                    "It literally says Rotten Luck. Use your brain."
+
+            },
+
+
+            fish: {
+
+                face:
+                    "cat-images/cat-surprised.png",
+
+                message:
+                    "HEY. Put my sardines back."
+
+            },
+
+
+            hat: {
+
+                face:
+                    "cat-images/cat-smug-3.png",
+
+                message:
+                    "Fine. I would look good in it."
+
+            }
+
+        };
+
+
+
+        /* ================================= */
+        /* DRAGGABLE OBJECTS                 */
+        /* ================================= */
+
+
+        const room =
+            document.querySelector(".room");
+
+
+        const wrappers =
+            document.querySelectorAll(".object-wrapper");
+
+
+
+        wrappers.forEach(
+
+            function (wrapper) {
+
+
+                const object =
+                    wrapper.querySelector(".room-object");
+
+
+
+                object.addEventListener(
+
+                    "mousedown",
+
+                    function (event) {
+
+
+                        event.preventDefault();
+
+
+
+                        /* ------------------------- */
+                        /* FIND THE OBJECT            */
+                        /* ------------------------- */
+
+
+                        let objectName = "";
+
+
+                        if (
+                            wrapper.classList.contains("clock")
+                        ) {
+
+                            objectName = "clock";
+
+                        }
+
+
+                        if (
+                            wrapper.classList.contains("phone")
+                        ) {
+
+                            objectName = "phone";
+
+                        }
+
+
+                        if (
+                            wrapper.classList.contains("books")
+                        ) {
+
+                            objectName = "books";
+
+                        }
+
+
+                        if (
+                            wrapper.classList.contains("flower")
+                        ) {
+
+                            objectName = "flower";
+
+                        }
+
+
+                        if (
+                            wrapper.classList.contains("apple")
+                        ) {
+
+                            objectName = "apple";
+
+                        }
+
+
+                        if (
+                            wrapper.classList.contains("fish")
+                        ) {
+
+                            objectName = "fish";
+
+                        }
+
+
+                        if (
+                            wrapper.classList.contains("hat")
+                        ) {
+
+                            objectName = "hat";
+
+                        }
+
+
+
+                        /* ------------------------- */
+                        /* FIG REACTS                */
+                        /* ------------------------- */
+
+
+                        if (reactions[objectName]) {
+
+
+                            cat.src =
+                                reactions[objectName].face;
+
+
+                            catText.textContent =
+                                reactions[objectName].message;
+
+                        }
+
+
+
+                        /* ------------------------- */
+                        /* START DRAGGING             */
+                        /* ------------------------- */
+
+
+                        const roomBox =
+                            room.getBoundingClientRect();
+
+
+                        const wrapperBox =
+                            wrapper.getBoundingClientRect();
+
+
+
+                        const offsetX =
+                            event.clientX -
+                            wrapperBox.left;
+
+
+                        const offsetY =
+                            event.clientY -
+                            wrapperBox.top;
+
+
+
+                        wrapper.style.zIndex = "20";
+
+
+
+                        function moveObject(event) {
+
+
+                            let newX =
+
+                                event.clientX -
+
+                                roomBox.left -
+
+                                offsetX;
+
+
+
+                            let newY =
+
+                                event.clientY -
+
+                                roomBox.top -
+
+                                offsetY;
+
+
+
+                            const maxX =
+
+                                room.clientWidth -
+
+                                wrapper.offsetWidth;
+
+
+
+                            const maxY =
+
+                                room.clientHeight -
+
+                                wrapper.offsetHeight;
+
+
+
+                            if (newX < 0) {
+
+                                newX = 0;
+
+                            }
+
+
+                            if (newY < 0) {
+
+                                newY = 0;
+
+                            }
+
+
+                            if (newX > maxX) {
+
+                                newX = maxX;
+
+                            }
+
+
+                            if (newY > maxY) {
+
+                                newY = maxY;
+
+                            }
+
+
+
+                            wrapper.style.left =
+                                newX + "px";
+
+
+                            wrapper.style.top =
+                                newY + "px";
+
+
+                            wrapper.style.right =
+                                "auto";
+
+
+                            wrapper.style.bottom =
+                                "auto";
+
+                        }
+
+
+
+                        function stopDragging() {
+
+
+                            document.removeEventListener(
+
+                                "mousemove",
+
+                                moveObject
+
+                            );
+
+
+                            document.removeEventListener(
+
+                                "mouseup",
+
+                                stopDragging
+
+                            );
+
+
+                            wrapper.style.zIndex = "";
+
+                        }
+
+
+
+                        document.addEventListener(
+
+                            "mousemove",
+
+                            moveObject
+
+                        );
+
+
+                        document.addEventListener(
+
+                            "mouseup",
+
+                            stopDragging
+
+                        );
+
+                    }
+
+                );
+
+            }
+
+        );
+
+
+
+        /* ================================= */
+        /* FIG'S TYPEWRITER RULES            */
+        /* ================================= */
+
+
+        const ruleNumber =
+            document.getElementById("rule-number");
+
+
+        const ruleTitle =
+            document.getElementById("rule-title");
+
+
+        const ruleDescription =
+            document.getElementById(
+                "rule-description"
+            );
+
+
+        const nextRule =
+            document.getElementById("next-rule");
+
+
+        const rulesCat =
+            document.getElementById("rules-cat");
+
+
+
+        const rules = [
+
+
+            {
+
+                number:
+                    "RULE 01",
+
+                title:
+                    "Touch my stuff if you want.",
+
+                description:
+                    "Click things. Drag things. Hover over things. That's why they're there.",
+
+                face:
+                    "cat-images/cat-smug-3.png"
+
+            },
+
+
+            {
+
+                number:
+                    "RULE 02",
+
+                title:
+                    "Some things lead somewhere else.",
+
+                description:
+                    "Click an object and it might take you somewhere. Try not to get lost.",
+
+                face:
+                    "cat-images/cat-neutral.png"
+
+            },
+
+
+            {
+
+                number:
+                    "RULE 03",
+
+                title:
+                    "Don't expect everything to make sense.",
+
+                description:
+                    "This is the Ninth Room. Things are here because they're here.",
+
+                face:
+                    "cat-images/cat-annoyed.png"
+
+            },
+
+
+            {
+
+                number:
+                    "RULE 04",
+
+                title:
+                    "Yes, I react to things.",
+
+                description:
+                    "I'm literally standing right here. Obviously I have opinions.",
+
+                face:
+                    "cat-images/cat-surprised.png"
+
+            },
+
+
+            {
+
+                number:
+                    "RULE 05",
+
+                title:
+                    "Explore.",
+
+                description:
+                    "That's basically the whole point. Stop waiting for me to tell you what to do.",
+
+                face:
+                    "cat-images/cat-smug-3.png"
+
+            }
+
+        ];
+
+
+
+        let currentRule = 0;
+
+
+
+        nextRule.addEventListener(
+
+            "click",
+
+            function () {
+
+
+                currentRule++;
+
+
+
+                if (
+                    currentRule >= rules.length
+                ) {
+
+                    currentRule = 0;
+
+                }
+
+
+
+                ruleNumber.textContent =
+                    rules[currentRule].number;
+
+
+                ruleTitle.textContent =
+                    rules[currentRule].title;
+
+
+                ruleDescription.textContent =
+                    rules[currentRule].description;
+
+
+                rulesCat.src =
+                    rules[currentRule].face;
+
+
+
+                if (
+                    currentRule ===
+                    rules.length - 1
+                ) {
+
+                    nextRule.textContent =
+                        "START OVER ↺";
+
+                }
+
+                else {
+
+                    nextRule.textContent =
+                        "NEXT →";
+
+                }
+
+            }
+
+        );
+
+       const booksLink = document.getElementById("books-link");
+
+let booksStartX = 0;
+let booksStartY = 0;
+let booksMoved = false;
+
+
+booksLink.addEventListener("pointerdown", function (event) {
+
+    booksStartX = event.clientX;
+    booksStartY = event.clientY;
+
+    booksMoved = false;
+
+});
+
+
+booksLink.addEventListener("pointermove", function (event) {
+
+    const distanceX =
+        Math.abs(event.clientX - booksStartX);
+
+    const distanceY =
+        Math.abs(event.clientY - booksStartY);
+
+
+    if (distanceX > 8 || distanceY > 8) {
+        booksMoved = true;
+    }
+
+});
+
+
+booksLink.addEventListener("pointerup", function () {
+
+    if (!booksMoved) {
+        window.location.href = "journal.html";
+    }
+
+});
+
+
+    </script>
+
+
+</body>
+
+</html>

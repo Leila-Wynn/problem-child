@@ -1,0 +1,862 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #4a2619;
+    color: #f4ead8;
+    font-family: "Quicksand", sans-serif;
+}
+
+
+/* HEADER */
+
+header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+
+/* ROOM */
+
+.room {
+    width: 92%;
+    max-width: 1200px;
+    min-height: 720px;
+
+    margin: 1rem auto 4rem;
+
+    position: relative;
+
+    background-color: #4a2619;
+
+    overflow: hidden;
+}
+
+
+/* ALL OBJECTS */
+
+.room-object {
+    position: absolute;
+    object-fit: contain;
+}
+
+
+/* CLOCK */
+
+.clock {
+    width: 150px;
+    top: 40px;
+    left: 5%;
+    transform: rotate(-8deg);
+}
+
+
+/* PHONE */
+
+.phone {
+    width: 145px;
+    top: 70px;
+    right: 7%;
+    transform: rotate(7deg);
+}
+
+
+/* BOOKS */
+
+.books {
+    width: 180px;
+    bottom: 55px;
+    left: 5%;
+    transform: rotate(-3deg);
+}
+
+
+/* FLOWER */
+
+.flower {
+    width: 130px;
+    top: 260px;
+    left: 22%;
+    transform: rotate(-12deg);
+}
+
+
+/* APPLE */
+
+.apple {
+    width: 115px;
+    bottom: 80px;
+    right: 23%;
+    transform: rotate(9deg);
+}
+
+
+/* FISH */
+
+.fish {
+    width: 175px;
+    top: 275px;
+    right: 5%;
+    transform: rotate(5deg);
+}
+
+
+/* HAT */
+
+.hat {
+    width: 160px;
+    bottom: 40px;
+    right: 4%;
+    transform: rotate(-7deg);
+}
+
+
+/* ---------------- */
+/*   PROBLEM CHILD  */
+/* ---------------- */
+
+.problem-child {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    transform: translate(-50%, -50%);
+
+    width: 330px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+/* CAT */
+
+#problem-child {
+    display: block;
+
+    width: 100%;
+    max-height: 390px;
+
+    object-fit: contain;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+#problem-child:hover {
+    transform: scale(1.03);
+    filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.25));
+}
+
+
+#problem-child:active {
+    transform: scale(0.98);
+}
+
+
+/* CAT SPEECH */
+
+.cat-message {
+    width: fit-content;
+    max-width: 270px;
+
+    margin: -15px auto 0;
+
+    padding: 0.7rem 1.1rem;
+
+    background-color: #f1e5cb;
+    color: #4a2619;
+
+    border-radius: 18px;
+
+    position: relative;
+
+    font-weight: 600;
+
+    box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+
+.cat-message p {
+    margin: 0;
+}
+
+
+/* little speech bubble point */
+
+.cat-message::before {
+    content: "";
+
+    position: absolute;
+
+    top: -12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 14px solid #f1e5cb;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    header h1 {
+        font-size: 2.3rem;
+    }
+
+    .room {
+        min-height: 800px;
+    }
+
+    .problem-child {
+        width: 260px;
+    }
+
+    .room-object {
+        transform: scale(0.85);
+    }
+
+}
+
+.room-object {
+    cursor: grab;
+    user-select: none;
+}
+
+.room-object:active {
+    cursor: grabbing;
+}
+
+/* -------------------------------- */
+/* INTERACTIVE OBJECTS              */
+/* -------------------------------- */
+
+.object-wrapper {
+    position: absolute;
+    cursor: grab;
+    user-select: none;
+}
+
+.object-wrapper:active {
+    cursor: grabbing;
+}
+
+
+/* keep the image inside its wrapper */
+
+.object-wrapper .room-object {
+    width: 100%;
+    display: block;
+}
+
+
+/* -------------------------------- */
+/* HOVER INFORMATION                */
+/* -------------------------------- */
+
+.object-info {
+    position: absolute;
+
+    left: 50%;
+    bottom: 105%;
+
+    transform: translateX(-50%);
+
+    width: 150px;
+
+    padding: 8px 10px;
+
+    background-color: #f4e5c8;
+    color: #4a281b;
+
+    font-family: "Quicksand", sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.2s;
+
+    pointer-events: none;
+
+    z-index: 30;
+}
+
+
+.object-wrapper:hover .object-info {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* -------------------------------- */
+/* OBJECT SIZES                     */
+/* -------------------------------- */
+
+.clock {
+    width: 110px;
+}
+
+.phone {
+    width: 145px;
+}
+
+.books {
+    width: 145px;
+}
+
+.flower {
+    width: 120px;
+}
+
+.apple {
+    width: 110px;
+}
+
+.fish {
+    width: 145px;
+}
+
+.hat {
+    width: 145px;
+}
+
+.fig-rules {
+    min-height: 100vh;
+
+    background-color: #4b281a;
+    background-image: url("images/plaid.jpg");
+
+    /* THIS controls how big the plaid pattern appears */
+    background-size: 500px auto;
+
+    background-repeat: repeat;
+    background-position: top left;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 70px;
+    padding: 80px 8%;
+    box-sizing: border-box;
+}
+
+
+/* FIG SIDE */
+
+.rules-intro {
+    width: 40%;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.rules-fig img {
+    width: 330px;
+    max-width: 100%;
+    display: block;
+}
+
+
+/* FIG SPEECH */
+
+.rules-speech {
+    background-color: #f4e5c8;
+    color: #4a281b;
+
+    font-family: "Quicksand", sans-serif;
+
+    max-width: 420px;
+
+    padding: 18px 22px;
+    margin-top: 15px;
+
+    border-radius: 18px;
+
+    line-height: 1.6;
+    text-align: center;
+
+    position: relative;
+}
+
+
+.rules-speech::before {
+    content: "";
+
+    position: absolute;
+
+    top: -15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 18px solid #f4e5c8;
+}
+
+
+/* ================================= */
+/* TYPEWRITER                        */
+/* ================================= */
+
+.typewriter-area {
+    width: 520px;
+    max-width: 50%;
+
+    position: relative;
+}
+
+
+.typewriter {
+    width: 100%;
+    display: block;
+}
+
+
+/* TEXT SITTING ON THE PAPER */
+
+.typewriter-paper {
+    position: absolute;
+
+    top: 7%;
+    left: 26%;
+
+    width: 48%;
+    height: 35%;
+
+    color: #3d241b;
+
+    font-family: "Quicksand", sans-serif;
+
+    text-align: left;
+
+    box-sizing: border-box;
+
+    padding: 15px;
+
+    overflow: hidden;
+}
+
+
+.rule-number {
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    margin: 0 0 8px;
+}
+
+
+.typewriter-paper h2 {
+    font-size: 20px;
+    line-height: 1.15;
+
+    margin: 0 0 10px;
+}
+
+
+#rule-description {
+    font-size: 13px;
+    line-height: 1.4;
+
+    margin-bottom: 12px;
+}
+
+
+/* NEXT BUTTON */
+
+#next-rule {
+    background: none;
+    border: none;
+
+    padding: 0;
+
+    color: #7c1f2b;
+
+    font-family: "Quicksand", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+#next-rule:hover {
+    text-decoration: underline;
+}
+
+
+/* ================================= */
+/* SMALLER SCREENS                   */
+/* ================================= */
+
+@media (max-width: 800px) {
+
+    
+    .rules-intro {
+        width: 100%;
+    }
+
+
+    .rules-fig img {
+        width: 230px;
+    }
+
+
+    .typewriter-area {
+        width: 450px;
+        max-width: 100%;
+    }
+
+}
+
+
+/* ================================= */
+/* FIG'S JOURNAL                     */
+/* ================================= */
+
+.journal-page {
+    margin: 0;
+    background-image: url("images/plaid.jpg");
+    background-size: 500px auto;
+    background-repeat: repeat;
+    color: #4a281b;
+}
+
+.journal-nav {
+    height: 55px;
+    padding: 0 4%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #542b1d;
+    color: #f4e5c8;
+
+    font-weight: 700;
+}
+
+.journal-nav a {
+    color: #f4e5c8;
+    text-decoration: none;
+}
+
+.journal-nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* WHOLE AREA */
+
+.journal-room {
+    width: 100%;
+    min-height: calc(100vh - 55px);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 50px 4%;
+}
+
+
+/* ================================= */
+/* FIG                               */
+/* ================================= */
+
+.journal-fig {
+    width: 280px;
+    flex-shrink: 0;
+
+    text-align: center;
+
+    position: relative;
+    z-index: 5;
+}
+
+#journal-cat {
+    width: 250px;
+    max-height: 300px;
+
+    display: block;
+    object-fit: contain;
+
+    margin: 0 auto;
+}
+
+.journal-cat-message {
+    width: 280px;
+
+    margin: 20px auto 0;
+    padding: 14px 18px;
+
+    background-color: #f4e5c8;
+
+    border-radius: 18px;
+
+    position: relative;
+
+    font-weight: 600;
+
+    box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.journal-cat-message::before {
+    content: "";
+
+    position: absolute;
+
+    top: -14px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 16px solid #f4e5c8;
+}
+
+.journal-cat-message p {
+    margin: 0;
+}
+
+
+/* ================================= */
+/* OPEN JOURNAL                      */
+/* ================================= */
+
+.open-journal {
+    width: 800px;
+    max-width: 60vw;
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    z-index: 2;
+}
+
+.journal-pages {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* ================================= */
+/* JOURNAL TEXT                      */
+/* ================================= */
+
+.journal-left-page {
+    position: absolute;
+
+    top: 20%;
+    left: 12%;
+
+    width: 34%;
+    height: 58%;
+
+    color: #4a281b;
+
+    overflow: hidden;
+}
+
+.journal-entry-number {
+    margin: 0 0 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.journal-left-page h1 {
+    margin: 0 0 16px;
+
+    font-size: 24px;
+    line-height: 1.15;
+}
+
+#entry-text {
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+#entry-text p {
+    margin: 0 0 15px;
+}
+
+
+/* ================================= */
+/* JOURNAL CONTROLS                  */
+/* ================================= */
+
+.journal-controls {
+    position: absolute;
+
+    left: 12%;
+    bottom: 17%;
+
+    width: 76%;
+
+    display: flex;
+    justify-content: space-between;
+
+    z-index: 10;
+}
+
+.journal-controls button {
+    border: 0;
+    background: none;
+
+    padding: 5px;
+
+    color: #7c1f2b;
+
+    font-family: "Quicksand", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.journal-controls button:hover {
+    text-decoration: underline;
+}
+
+
+/* ================================= */
+/* FIG'S STUFF                       */
+/* ================================= */
+
+.journal-object {
+    position: absolute;
+
+    object-fit: contain;
+
+    z-index: 6;
+
+    pointer-events: none;
+}
+
+.journal-pen {
+    width: 95px;
+
+    top: 8%;
+    left: 35%;
+
+    transform: rotate(12deg);
+}
+
+.journal-crosswords {
+    width: 165px;
+
+    bottom: 6%;
+    left: 31%;
+
+    transform: rotate(-9deg);
+}
+
+.journal-coffee {
+    width: 180px;
+
+    right: 3%;
+    bottom: 5%;
+
+    transform: rotate(4deg);
+}
+
+
+/* ================================= */
+/* SMALL SCREENS                     */
+/* ================================= */
+
+@media (max-width: 900px) {
+
+    .journal-room {
+        flex-direction: column;
+
+        min-height: auto;
+
+        padding: 50px 20px;
+    }
+
+    .journal-fig {
+        width: 260px;
+    }
+
+    .open-journal {
+        width: 700px;
+        max-width: 95vw;
+    }
+
+    .journal-object {
+        display: none;
+    }
+}
+
+/* ================================= */
+/* JOURNAL INTERACTION FIX           */
+/* ================================= */
+
+.journal-object {
+    pointer-events: auto;
+    cursor: pointer;
+
+    transition:
+        filter 0.2s ease;
+}
+
+.journal-object:hover {
+    filter: drop-shadow(
+        0 7px 6px rgba(0, 0, 0, 0.35)
+    );
+}
+
+.journal-object:active {
+    filter: drop-shadow(
+        0 3px 3px rgba(0, 0, 0, 0.3)
+    );
+}

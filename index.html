@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
     <!-- ===================================== -->
@@ -46,7 +45,6 @@
             </div>
 
 
-
             <!-- TELEPHONE -->
 
             <div class="object-wrapper phone">
@@ -65,24 +63,22 @@
             </div>
 
 
-
             <!-- BOOKS -->
 
             <div class="object-wrapper books" id="books-link">
 
-    <img
-        src="images/Books.png"
-        class="room-object"
-        alt="Stack of old books"
-        draggable="false">
+                <img
+                    src="images/Books.png"
+                    class="room-object"
+                    alt="Stack of old books"
+                    draggable="false">
 
-    <div class="object-info">
-        Fig's Journal<br>
-        Click to snoop.
-    </div>
+                <div class="object-info">
+                    Fig's Journal<br>
+                    Click to snoop.
+                </div>
 
-</div>
-
+            </div>
 
 
             <!-- DRIED FLOWER -->
@@ -103,7 +99,6 @@
             </div>
 
 
-
             <!-- ROTTEN LUCK -->
 
             <div class="object-wrapper apple">
@@ -120,7 +115,6 @@
                 </div>
 
             </div>
-
 
 
             <!-- SARDINES -->
@@ -141,7 +135,6 @@
             </div>
 
 
-
             <!-- HAT -->
 
             <div class="object-wrapper hat">
@@ -158,7 +151,6 @@
                 </div>
 
             </div>
-
 
 
             <!-- FIG -->
@@ -180,7 +172,6 @@
                 </div>
 
             </div>
-
 
         </section>
 
@@ -222,40 +213,42 @@
 
 
 
-           <!-- TYPEWRITER -->
+            <!-- TYPEWRITER -->
 
-<div class="typewriter-area">
+            <div class="typewriter-area">
 
-    <img
-        src="images/typewriter.png"
-        class="typewriter"
-        alt="Vintage burgundy typewriter">
+                <img
+                    src="images/typewriter.png"
+                    class="typewriter"
+                    alt="Vintage burgundy typewriter">
 
-    <!-- TEXT ON THE PAPER -->
 
-    <div class="typewriter-paper">
+                <!-- TEXT ON THE PAPER -->
 
-        <p class="rule-number" id="rule-number">
-            RULE 01
-        </p>
+                <div class="typewriter-paper">
 
-        <h2 id="rule-title">
-            Touch my stuff if you want.
-        </h2>
+                    <p
+                        class="rule-number"
+                        id="rule-number">
+                        RULE 01
+                    </p>
 
-        <p id="rule-description">
-            Click things. Drag things. Hover over things.
-            That's why they're there.
-        </p>
+                    <h2 id="rule-title">
+                        Touch my stuff if you want.
+                    </h2>
 
-        <button id="next-rule">
-            NEXT →
-        </button>
+                    <p id="rule-description">
+                        Click things. Drag things. Hover over things.
+                        That's why they're there.
+                    </p>
 
-    </div>
+                    <button id="next-rule">
+                        NEXT →
+                    </button>
 
-</div>
+                </div>
 
+            </div>
 
         </section>
 
@@ -268,7 +261,6 @@
         /* ================================= */
         /* FIG IN THE FIRST ROOM             */
         /* ================================= */
-
 
         const cat =
             document.getElementById("problem-child");
@@ -319,9 +311,7 @@
 
 
                 if (expression >= expressions.length) {
-
                     expression = 0;
-
                 }
 
 
@@ -341,9 +331,7 @@
         /* FIG REACTS TO OBJECTS             */
         /* ================================= */
 
-
         const reactions = {
-
 
             clock: {
 
@@ -429,24 +417,19 @@
         /* DRAGGABLE OBJECTS                 */
         /* ================================= */
 
-
         const room =
             document.querySelector(".room");
 
-
         const wrappers =
             document.querySelectorAll(".object-wrapper");
-
 
 
         wrappers.forEach(
 
             function (wrapper) {
 
-
                 const object =
                     wrapper.querySelector(".room-object");
-
 
 
                 object.addEventListener(
@@ -455,94 +438,49 @@
 
                     function (event) {
 
-
                         event.preventDefault();
 
 
-
-                        /* ------------------------- */
-                        /* FIND THE OBJECT            */
-                        /* ------------------------- */
-
+                        /* FIND THE OBJECT */
 
                         let objectName = "";
 
 
-                        if (
-                            wrapper.classList.contains("clock")
-                        ) {
-
+                        if (wrapper.classList.contains("clock")) {
                             objectName = "clock";
-
                         }
 
-
-                        if (
-                            wrapper.classList.contains("phone")
-                        ) {
-
+                        if (wrapper.classList.contains("phone")) {
                             objectName = "phone";
-
                         }
 
-
-                        if (
-                            wrapper.classList.contains("books")
-                        ) {
-
+                        if (wrapper.classList.contains("books")) {
                             objectName = "books";
-
                         }
 
-
-                        if (
-                            wrapper.classList.contains("flower")
-                        ) {
-
+                        if (wrapper.classList.contains("flower")) {
                             objectName = "flower";
-
                         }
 
-
-                        if (
-                            wrapper.classList.contains("apple")
-                        ) {
-
+                        if (wrapper.classList.contains("apple")) {
                             objectName = "apple";
-
                         }
 
-
-                        if (
-                            wrapper.classList.contains("fish")
-                        ) {
-
+                        if (wrapper.classList.contains("fish")) {
                             objectName = "fish";
-
                         }
 
-
-                        if (
-                            wrapper.classList.contains("hat")
-                        ) {
-
+                        if (wrapper.classList.contains("hat")) {
                             objectName = "hat";
-
                         }
 
 
-
-                        /* ------------------------- */
-                        /* FIG REACTS                */
-                        /* ------------------------- */
-
+                        /* FIG REACTS */
 
                         if (reactions[objectName]) {
 
-
                             cat.src =
                                 reactions[objectName].face;
-
 
                             catText.textContent =
                                 reactions[objectName].message;
@@ -550,115 +488,74 @@
                         }
 
 
-
-                        /* ------------------------- */
-                        /* START DRAGGING             */
-                        /* ------------------------- */
-
+                        /* START DRAGGING */
 
                         const roomBox =
                             room.getBoundingClientRect();
 
-
                         const wrapperBox =
                             wrapper.getBoundingClientRect();
-
 
 
                         const offsetX =
                             event.clientX -
                             wrapperBox.left;
 
-
                         const offsetY =
                             event.clientY -
                             wrapperBox.top;
 
 
-
                         wrapper.style.zIndex = "20";
-
 
 
                         function moveObject(event) {
 
-
                             let newX =
-
                                 event.clientX -
-
                                 roomBox.left -
-
                                 offsetX;
 
-
-
                             let newY =
-
                                 event.clientY -
-
                                 roomBox.top -
-
                                 offsetY;
 
 
-
                             const maxX =
-
                                 room.clientWidth -
-
                                 wrapper.offsetWidth;
 
-
-
                             const maxY =
-
                                 room.clientHeight -
-
                                 wrapper.offsetHeight;
 
 
-
                             if (newX < 0) {
-
                                 newX = 0;
-
                             }
-
 
                             if (newY < 0) {
-
                                 newY = 0;
-
                             }
-
 
                             if (newX > maxX) {
-
                                 newX = maxX;
-
                             }
-
 
                             if (newY > maxY) {
-
                                 newY = maxY;
-
                             }
-
 
 
                             wrapper.style.left =
                                 newX + "px";
 
-
                             wrapper.style.top =
                                 newY + "px";
 
-
                             wrapper.style.right =
                                 "auto";
-
 
                             wrapper.style.bottom =
                                 "auto";
@@ -666,49 +563,31 @@
                         }
 
 
-
                         function stopDragging() {
 
-
                             document.removeEventListener(
-
                                 "mousemove",
-
                                 moveObject
-
                             );
-
 
                             document.removeEventListener(
-
                                 "mouseup",
-
                                 stopDragging
-
                             );
-
 
                             wrapper.style.zIndex = "";
 
                         }
 
 
-
                         document.addEventListener(
-
                             "mousemove",
-
                             moveObject
-
                         );
 
-
                         document.addEventListener(
-
                             "mouseup",
-
                             stopDragging
-
                         );
 
                     }
@@ -725,35 +604,27 @@
         /* FIG'S TYPEWRITER RULES            */
         /* ================================= */
 
-
         const ruleNumber =
             document.getElementById("rule-number");
 
-
         const ruleTitle =
             document.getElementById("rule-title");
-
 
         const ruleDescription =
             document.getElementById(
                 "rule-description"
             );
 
-
         const nextRule =
             document.getElementById("next-rule");
-
 
         const rulesCat =
             document.getElementById("rules-cat");
 
 
-
         const rules = [
 
-
             {
-
                 number:
                     "RULE 01",
 
@@ -765,12 +636,10 @@
 
                 face:
                     "cat-images/cat-smug-3.png"
-
             },
 
 
             {
-
                 number:
                     "RULE 02",
 
@@ -782,12 +651,10 @@
 
                 face:
                     "cat-images/cat-neutral.png"
-
             },
 
 
             {
-
                 number:
                     "RULE 03",
 
@@ -799,12 +666,10 @@
 
                 face:
                     "cat-images/cat-annoyed.png"
-
             },
 
 
             {
-
                 number:
                     "RULE 04",
 
@@ -816,12 +681,10 @@
 
                 face:
                     "cat-images/cat-surprised.png"
-
             },
 
 
             {
-
                 number:
                     "RULE 05",
 
@@ -833,15 +696,12 @@
 
                 face:
                     "cat-images/cat-smug-3.png"
-
             }
 
         ];
 
 
-
         let currentRule = 0;
-
 
 
         nextRule.addEventListener(
@@ -850,36 +710,25 @@
 
             function () {
 
-
                 currentRule++;
 
 
-
-                if (
-                    currentRule >= rules.length
-                ) {
-
+                if (currentRule >= rules.length) {
                     currentRule = 0;
-
                 }
-
 
 
                 ruleNumber.textContent =
                     rules[currentRule].number;
 
-
                 ruleTitle.textContent =
                     rules[currentRule].title;
-
 
                 ruleDescription.textContent =
                     rules[currentRule].description;
 
-
                 rulesCat.src =
                     rules[currentRule].face;
-
 
 
                 if (
@@ -903,50 +752,78 @@
 
         );
 
-       const booksLink = document.getElementById("books-link");
-
-let booksStartX = 0;
-let booksStartY = 0;
-let booksMoved = false;
 
 
-booksLink.addEventListener("pointerdown", function (event) {
+        /* ================================= */
+        /* BOOKS: CLICK OPENS JOURNAL        */
+        /* DRAGGING DOES NOT OPEN JOURNAL    */
+        /* ================================= */
 
-    booksStartX = event.clientX;
-    booksStartY = event.clientY;
+        const booksLink =
+            document.getElementById("books-link");
 
-    booksMoved = false;
-
-});
-
-
-booksLink.addEventListener("pointermove", function (event) {
-
-    const distanceX =
-        Math.abs(event.clientX - booksStartX);
-
-    const distanceY =
-        Math.abs(event.clientY - booksStartY);
+        let booksStartX = 0;
+        let booksStartY = 0;
+        let booksMoved = false;
 
 
-    if (distanceX > 8 || distanceY > 8) {
-        booksMoved = true;
-    }
+        booksLink.addEventListener(
+            "pointerdown",
 
-});
+            function (event) {
+
+                booksStartX = event.clientX;
+                booksStartY = event.clientY;
+
+                booksMoved = false;
+
+            }
+        );
 
 
-booksLink.addEventListener("pointerup", function () {
+        booksLink.addEventListener(
+            "pointermove",
 
-    if (!booksMoved) {
-        window.location.href = "journal.html";
-    }
+            function (event) {
 
-});
+                const distanceX =
+                    Math.abs(
+                        event.clientX - booksStartX
+                    );
 
+                const distanceY =
+                    Math.abs(
+                        event.clientY - booksStartY
+                    );
+
+
+                if (
+                    distanceX > 8 ||
+                    distanceY > 8
+                ) {
+
+                    booksMoved = true;
+
+                }
+
+            }
+        );
+
+
+        booksLink.addEventListener(
+            "pointerup",
+
+            function () {
+
+                if (!booksMoved) {
+                    window.location.href =
+                        "journal.html";
+                }
+
+            }
+        );
 
     </script>
-
 
 </body>
 

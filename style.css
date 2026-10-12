@@ -860,3 +860,56 @@ header p {
         0 3px 3px rgba(0, 0, 0, 0.3)
     );
 }
+
+/* THE NINTH ROOM INTRODUCTION */
+
+.room-introduction {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 30px;
+    text-align: left;
+    line-height: 1.8;
+}
+
+.room-introduction h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.room-introduction p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* NINTH ROOM NAVIGATION */
+
+nav {
+    background-color: #fff5df;
+    padding: 15px 25px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+nav a {
+    color: #3b2525;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav a:focus-visible {
+    outline: 2px solid #3b2525;
+    outline-offset: 4px;
+}

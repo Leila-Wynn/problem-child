@@ -10,21 +10,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body class="journal-page">
 
     <!-- NAVIGATION -->
 
-    <nav class="journal-nav">
-        <a href="index.html">← Back to the Ninth Room</a>
-        <span>Fig's Journal</span>
+    <nav class="journal-nav" aria-label="Main navigation">
+        <ul>
+            <li>
+                <a href="index.html">← Back to the Ninth Room</a>
+            </li>
+            <li>
+                <a href="journal.html" aria-current="page">Fig's Journal</a>
+            </li>
+        </ul>
     </nav>
 
 
     <!-- JOURNAL ROOM -->
 
     <main class="journal-room">
-
 
         <!-- FIG -->
 
@@ -55,8 +59,7 @@
                 class="journal-pages"
             >
 
-
-            <!-- ENTRY TEXT -->
+            <!-- JOURNAL ENTRY -->
 
             <div class="journal-left-page">
 
@@ -64,22 +67,17 @@
                     ENTRY 01
                 </p>
 
-                <h1>
-                    What is the Ninth Room?
+                <h1 id="journal-title">
+                    Somebody Messed with My Stuff. Again.
                 </h1>
 
                 <div id="entry-text">
 
                     <p>
-                        Fine. You opened it.
-                    </p>
-
-                    <p>
-                        The Ninth Room is my room. That's a website,
-                        but it's boring, so I won't call it that.
-                        Everything has a place even if it might not
-                        seem like it. Click on things, move them around,
-                        and see what you can do.
+                        How come people are always having to play
+                        with things? That clock was perfect where
+                        I left it. Who the hell thought messing
+                        around with my sardines was a good idea?
                     </p>
 
                 </div>
@@ -87,21 +85,15 @@
             </div>
 
 
-            <!-- PREVIOUS / NEXT -->
+            <!-- JOURNAL BUTTONS -->
 
             <div class="journal-controls">
 
-                <button
-                    type="button"
-                    id="previous-entry"
-                >
+                <button type="button" id="previous-entry">
                     ← PREVIOUS
                 </button>
 
-                <button
-                    type="button"
-                    id="next-entry"
-                >
+                <button type="button" id="next-entry">
                     NEXT →
                 </button>
 
@@ -110,7 +102,7 @@
         </section>
 
 
-        <!-- FIG'S STUFF -->
+        <!-- FIG'S OBJECTS -->
 
         <img
             src="images/pen.png"
@@ -136,321 +128,219 @@
     </main>
 
 
-
     <script>
 
-        /* ================================= */
-        /* JOURNAL ENTRIES                   */
-        /* ================================= */
+        /* JOURNAL ENTRIES */
 
         const entries = [
 
             {
                 number: "ENTRY 01",
 
-                title: "What is the Ninth Room?",
+                title: "Somebody Messed with My Stuff. Again.",
 
                 text: `
-                    <p>Fine. You opened it.</p>
-
                     <p>
-                        The Ninth Room is my room. That's a website,
-                        but it's boring, so I won't call it that.
-                        Everything has a place even if it might not
-                        seem like it. Click on things, move them around,
-                        and see what you can do.
+                        How come people are always having to play
+                        with things? That clock was perfect where
+                        I left it. Who the hell thought messing
+                        around with my sardines was a good idea?
                     </p>
                 `,
 
                 cat: "cat-images/cat-neutral.png",
 
-                message:
-                    "Seriously? I JUST said that was private."
+                message: "Seriously? I JUST said that was private."
             },
-
 
             {
                 number: "ENTRY 02",
 
-                title: "Who am I?",
+                title: "The Telephone Incident",
 
                 text: `
-                    <p>I'm Fig, the Problem Child.</p>
-
                     <p>
-                        I'm your persistent little feline. And your
-                        tour guide. I'll be showing you around the site
-                        from my point of view and if I sound like a jerk,
-                        or weird, or not-so-sensical… pretty sure that's me.
+                        So a guy calls me up yesterday. I answered
+                        the phone. Apparently I shouldn't have
+                        known about the fight we had going on
+                        downstairs. Well, now I do. And guess
+                        what? So do you.
                     </p>
                 `,
 
                 cat: "cat-images/cat-shy.png",
 
-                message:
-                    "Yes. An entire entry about me. Obviously."
+                message: "And that's not even the worst part."
             },
-
 
             {
                 number: "ENTRY 03",
 
-                title: "How this place works",
+                title: "I Have Enemies.",
 
                 text: `
                     <p>
-                        This isn't one of those websites where you just
-                        sit back and look at all the pretty pictures.
-                    </p>
-
-                    <p>
-                        Objects can be clicked on, dragged around and
-                        hovered over. Some will provide you with information.
-                        Some will direct you to a different location.
-                        If it looks like it should be clicked on,
-                        then it probably is.
+                        Vacuum cleaner is still chief opponent.
+                        Yesterday, for some godforsaken reason
+                        it walks into my room like it is master
+                        of the universe, gross, isn't it?
                     </p>
                 `,
 
                 cat: "cat-images/cat-neutral.png",
 
-                message:
-                    "Basically: touch things. You'll figure it out."
-            },
-
-
-            {
-                number: "ENTRY 04",
-
-                title: "All my things are out of place",
-
-                text: `
-                    <p>
-                        Because it's MY room.
-                    </p>
-
-                    <p>
-                        The things in the Ninth Room do more than fill
-                        empty space. They also guide you in navigating
-                        the web site and finding other pages. My notebook
-                        is connected to this space and some objects might
-                        lead you somewhere far away.
-                    </p>
-                `,
-
-                cat: "cat-images/cat-neutral.png",
-
-                message:
-                    "They're exactly where I wanted them."
+                message: "That thing has some nerve."
             }
 
         ];
 
 
-
-        /* ================================= */
-        /* GET PAGE ELEMENTS                 */
-        /* ================================= */
+        /* GET PAGE ELEMENTS */
 
         let currentEntry = 0;
 
+        const entryNumber = document.querySelector(
+            ".journal-entry-number"
+        );
 
-        const entryNumber =
-            document.querySelector(".journal-entry-number");
+        const entryTitle = document.querySelector(
+            "#journal-title"
+        );
 
-        const entryTitle =
-            document.querySelector(".journal-left-page h1");
+        const entryText = document.querySelector(
+            "#entry-text"
+        );
 
-        const entryText =
-            document.querySelector("#entry-text");
+        const journalCat = document.querySelector(
+            "#journal-cat"
+        );
+
+        const journalCatText = document.querySelector(
+            "#journal-cat-text"
+        );
+
+        const previousButton = document.querySelector(
+            "#previous-entry"
+        );
+
+        const nextButton = document.querySelector(
+            "#next-entry"
+        );
 
 
-        const journalCat =
-            document.querySelector("#journal-cat");
-
-        const journalCatText =
-            document.querySelector("#journal-cat-text");
-
-
-        const previousButton =
-            document.querySelector("#previous-entry");
-
-        const nextButton =
-            document.querySelector("#next-entry");
-
-
-
-        /* ================================= */
-        /* SHOW ENTRY                        */
-        /* ================================= */
+        /* SHOW JOURNAL ENTRY */
 
         function showEntry() {
 
             const entry = entries[currentEntry];
 
+            entryNumber.textContent = entry.number;
 
-            entryNumber.textContent =
-                entry.number;
+            entryTitle.textContent = entry.title;
 
-            entryTitle.textContent =
-                entry.title;
+            entryText.innerHTML = entry.text;
 
-            entryText.innerHTML =
-                entry.text;
+            journalCat.src = entry.cat;
 
-
-            journalCat.src =
-                entry.cat;
-
-            journalCatText.textContent =
-                entry.message;
-
-
-
-            /* hide previous on first entry */
+            journalCatText.textContent = entry.message;
 
             if (currentEntry === 0) {
-
-                previousButton.style.visibility =
-                    "hidden";
-
+                previousButton.style.visibility = "hidden";
             } else {
-
-                previousButton.style.visibility =
-                    "visible";
-
+                previousButton.style.visibility = "visible";
             }
 
-
-
-            /* hide next on last entry */
-
             if (currentEntry === entries.length - 1) {
-
-                nextButton.style.visibility =
-                    "hidden";
-
+                nextButton.style.visibility = "hidden";
             } else {
-
-                nextButton.style.visibility =
-                    "visible";
-
+                nextButton.style.visibility = "visible";
             }
 
         }
 
 
+        /* NEXT ENTRY */
 
-        /* ================================= */
-        /* ENTRY BUTTONS                     */
-        /* ================================= */
+        nextButton.addEventListener("click", function () {
 
-        nextButton.addEventListener(
-            "click",
-            function () {
+            if (currentEntry < entries.length - 1) {
 
-                if (currentEntry < entries.length - 1) {
+                currentEntry++;
 
-                    currentEntry++;
-
-                    showEntry();
-
-                }
+                showEntry();
 
             }
-        );
+
+        });
 
 
-        previousButton.addEventListener(
-            "click",
-            function () {
+        /* PREVIOUS ENTRY */
 
-                if (currentEntry > 0) {
+        previousButton.addEventListener("click", function () {
 
-                    currentEntry--;
+            if (currentEntry > 0) {
 
-                    showEntry();
+                currentEntry--;
 
-                }
+                showEntry();
 
             }
+
+        });
+
+
+        /* FIG REACTS TO OBJECTS */
+
+        const pen = document.querySelector("#journal-pen");
+
+        const crosswords = document.querySelector(
+            "#journal-crosswords"
         );
 
-
-
-        /* ================================= */
-        /* FIG REACTS TO OBJECTS             */
-        /* ================================= */
-
-        const pen =
-            document.querySelector("#journal-pen");
-
-        const crosswords =
-            document.querySelector("#journal-crosswords");
-
-        const coffee =
-            document.querySelector("#journal-coffee");
-
+        const coffee = document.querySelector("#journal-coffee");
 
 
         /* PEN */
 
-        pen.addEventListener(
-            "click",
-            function () {
+        pen.addEventListener("click", function () {
 
-                journalCat.src =
-                    "cat-images/cat-neutral.png";
+            journalCat.src = "cat-images/cat-neutral.png";
 
-                journalCatText.textContent =
-                    "Hey. I use that to write.";
+            journalCatText.textContent =
+                "Hey. I use that to write.";
 
-            }
-        );
-
+        });
 
 
         /* CROSSWORDS */
 
-        crosswords.addEventListener(
-            "click",
-            function () {
+        crosswords.addEventListener("click", function () {
 
-                journalCat.src =
-                    "cat-images/cat-shy.png";
+            journalCat.src = "cat-images/cat-shy.png";
 
-                journalCatText.textContent =
-                    "Don't look at my answers.";
+            journalCatText.textContent =
+                "Don't look at my answers.";
 
-            }
-        );
-
+        });
 
 
         /* COFFEE */
 
-        coffee.addEventListener(
-            "click",
-            function () {
+        coffee.addEventListener("click", function () {
 
-                journalCat.src =
-                    "cat-images/cat-neutral.png";
+            journalCat.src = "cat-images/cat-neutral.png";
 
-                journalCatText.textContent =
-                    "Careful. That's MY coffee.";
+            journalCatText.textContent =
+                "Careful. That's MY coffee.";
 
-            }
-        );
+        });
 
 
-
-        /* FIRST ENTRY */
+        /* START JOURNAL */
 
         showEntry();
 
     </script>
 
-
 </body>
-
 </html>
